@@ -37,6 +37,6 @@ Após modificar os parâmetros, o código realizará automaticamente o download 
 No processo de fusões de imagens (Pansharpening), é utilizado um filtro de suavização aplicado à imagem PAN. Este filtro tem o objetivo de reduzir o ruído de alta frequência e melhorar a qualidade da fusão das imagens multiespectrais com a imagem PAN de alta resolução.
 
 ### **Detalhes do Filtro de Suavização**:
-- **Filtro de Suavização:** O filtro utilizado é o cv2.blur() do OpenCV, que aplica uma suavização simples à imagem PAN, utilizando uma janela de tamanho 5x5. A suavização ajuda a evitar artefatos que poderiam ser introduzidos durante a fusão das imagens.
+- **Filtro de Suavização:** O filtro utilizado é o `cv2.blur()` do OpenCV, que aplica uma suavização simples à imagem PAN, utilizando uma janela de tamanho 5x5. A suavização ajuda a evitar artefatos que poderiam ser introduzidos durante a fusão das imagens.
 - **Evitar Divisão por Zero:** Para garantir que não ocorram erros de divisão por zero durante a fusão das imagens, qualquer valor de zero no resultado do filtro é substituído por um valor muito pequeno (1e-6). Isso é feito para preservar a integridade dos cálculos de fusão, sem causar distorções.
 - **Objetivo da Suavização:** O objetivo da suavização é garantir que a fusão das imagens RGB e NIRGB com a imagem PAN seja realizada de forma fluida, com detalhes mais nítidos e sem ruídos indesejados.
