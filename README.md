@@ -20,3 +20,23 @@ O objetivo deste código é facilitar a aquisição e o processamento de dados d
 - **Imagens Pansharpened RGB**: Imagens RGB com alta resolução, combinadas com a imagem panorâmica (PAN) utilizando a técnica de fusão.
 - **Imagens Pansharpened NIRGB**: Imagens NIRGB com alta resolução, também utilizando a fusão com a imagem panorâmica.
 - **NDVI**: Índice de Vegetação por Diferença Normalizada, útil para monitoramento de vegetação.
+
+## Como Usar
+
+### 1. **Configuração do Ambiente**:
+Certifique-se de ter o Python 3.6 ou superior e as bibliotecas necessárias instaladas.
+
+### 2. **Baixando as Imagens**:
+Modifique os parâmetros no início do código, como shp_path (caminho do shapefile), scene_id (ID da cena do CBERS-4A, **produto WPM_L4_DN**), user_cbers (usuário do CBERS) e out_dir (diretório de saída), conforme necessário para seu caso específico.
+
+### 3. **Processamento de Imagens**:
+Após modificar os parâmetros, o código realizará automaticamente o download das imagens, o recorte e o redimensionamento, e a geração dos produtos finais (**RGB**, **NIRGB**, **PAN-RGB**, **PAN-NIRGB** e **NDVI**).
+
+
+## Filtro de Suavização para Pansharpening
+No processo de fusões de imagens (Pansharpening), é utilizado um filtro de suavização aplicado à imagem PAN. Este filtro tem o objetivo de reduzir o ruído de alta frequência e melhorar a qualidade da fusão das imagens multiespectrais com a imagem PAN de alta resolução.
+
+### **Detalhes do Filtro de Suavização**:
+- **Filtro de Suavização:** O filtro utilizado é o cv2.blur() do OpenCV, que aplica uma suavização simples à imagem PAN, utilizando uma janela de tamanho 5x5. A suavização ajuda a evitar artefatos que poderiam ser introduzidos durante a fusão das imagens.
+- **Evitar Divisão por Zero:** Para garantir que não ocorram erros de divisão por zero durante a fusão das imagens, qualquer valor de zero no resultado do filtro é substituído por um valor muito pequeno (1e-6). Isso é feito para preservar a integridade dos cálculos de fusão, sem causar distorções.
+- **Objetivo da Suavização:** O objetivo da suavização é garantir que a fusão das imagens RGB e NIRGB com a imagem PAN seja realizada de forma fluida, com detalhes mais nítidos e sem ruídos indesejados.
